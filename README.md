@@ -86,7 +86,7 @@ Let´s break that down:
 
     FROM java
 
-Nearly every dockerimage has a base image which provides us with a basic linux environment and in our case cause we use the official java docker image (which btw. was build on top of a debian linux docker image) we don´t even care about installing java. This step only works cause we pulled the image from docker hub before (see top)</</br>
+Nearly every dockerimage has a base image which provides us with a basic linux environment and in our case cause we use the official java docker image (which btw. was build on top of a debian linux docker image) we don´t even care about installing java. This step only works cause we pulled the image from docker hub before (see top)</br>
 
     
     WORKDIR /usr/src/app
