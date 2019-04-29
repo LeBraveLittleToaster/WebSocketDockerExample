@@ -24,7 +24,7 @@ The Java-Example project is a super basic echo websocket server running on port 
 
 First test the server if it´s working as intended. Just execute the main function in 'core.SopraServer'.
 
-If you are lazy like me then you can use the SimpleWebsocketClient (Chrome Extension) as a client to test if everything is working as expected ( https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo).
+If you are lazy like me then you can use the SimpleWebsocketClient (Chrome Extension but also available for Firefox) as a client to test if everything is working as expected ( https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo).
 
 You can execute the Server in your IDE and connect via this link to your instance:
 
@@ -110,6 +110,16 @@ The CMD tag highlights the command that should be executed if we run our contain
 
 Docker is 99% a command line tool so we need a bunch of commands to get our job done. For this go into a command line of your choice and move to the root of your cloned project (where your dockerfile is)
 
+Be carefull that no instance of the server is running in your IDE! Otherwise the server will crash cause of already used ports!
+
+For this example project we need to following commands in this order:
+
+        docker build -t sopra
+        docker run -p 54321:54321 -d sopra
+        docker ps
+
+If everything worked then you now can connect with your client (browser plugin) to the server in the docker image.
+
 - Check if any docker image is running
 
         docker ps
@@ -141,13 +151,3 @@ Docker is 99% a command line tool so we need a bunch of commands to get our job 
 - I copied files...maybe...or not...can I connect to the filesystem to check that?
 
         docker run -t -i <image name> /bin/bash
-
-Be carefull that no instance of the server is running in your IDE! Otherwise the server will crash cause of already used ports!
-
-For this example project we need to following commands in this order:
-
-        docker build -t sopra
-        docker run -p 54321:54321 -d sopra
-        docker ps
-
-If everything worked then you now can connect with your client (browser plugin) to the server in the docker image.
