@@ -12,7 +12,7 @@ public class SopraServer {
     while(true) {
       if(service == null) {
         service = new WSSocketService(new InetSocketAddress(WS_PORT));
-        System.out.println("Started core...");
+        System.out.println("Server is read to use...");
         service.start();
       }
     }

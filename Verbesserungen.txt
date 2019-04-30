@@ -1,0 +1,1 @@
+Einloggen Docker, highlighten den man tuen muss am Ende (cd zum ordner), genauer am werden am Ende, tuen und erklären teilen
