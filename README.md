@@ -18,9 +18,11 @@
 ## Import
 
 
-![image info](./readmepics/importInEclipse.png)
+
 
 </br>Import the project as a gradle project in your IDE of choice.
+
+![image info](./readmepics/importInEclipse.png =250px)
 
 The Java-Example project is a super basic echo websocket server running on port 54321 based on the Websocket-Library from Nathan Rajlich (https://github.com/TooTallNate/Java-WebSocket).
 
