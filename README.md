@@ -1,53 +1,88 @@
-# Docker Example
+# Whats is this?
 
-## What you should already know
+The following is a step by step guide to setup Docker with a given java server project to showcase the use of Docker. Please read the instructions carefully. The process should take around 30min up to 1h based on your knowledge.
+
+# What you should already know
 
 - What is the idea behind docker? (it is a container software, easy and consistent environment setup, bla bla bla)
 - What Gradle is and how to use it!
 - How a command line looks like and what a working directory in a command line is!
 - Git clone
 
-## Important Steps
+# Preparation
 - Clone the repo!
 - Make yourself a Docker ID at https://www.docker.com/
-- Go to Products -> Docker Desktop, download and install it
+- At the docker homepage go to Products -> Docker Desktop, download and install it
+- Sign in to docker (picture below)
+
+![image info](./readmepics/signInDocker.png)
+               
 - go to your terminal and run 'docker pull java' to get the latest java docker file (we need this later)
+
+# Terminilogy
+
+The following terms are used without explanation
+
+    < insert content >
+
+Everything between the braces should be replaced with the described content.
+
+    < docker ps -> container id >
+
+If you find a -> arrow then you should do the action on the left side and take the information described on the left side.
+Example: Run "docker ps" and take the container id
+
+    root folder
+
+The root folder is the first folder in the hierachy. In our case it is the "WebSocketDockerExample" folder.
 
 # Setup the java project
 
+
 ## Import
 
+Import the project as a gradle project in your IDE of choice.
 
-
-
-</br>Import the project as a gradle project in your IDE of choice.
-
-![image info](./readmepics/importInEclipse.png =250x)
+![image info](./readmepics/fileImport.jpg)
+![image info](./readmepics/importInEclipse.png)
+![image info](./readmepics/gradleFinish.png)
 
 The Java-Example project is a super basic echo websocket server running on port 54321 based on the Websocket-Library from Nathan Rajlich (https://github.com/TooTallNate/Java-WebSocket).
 
 First test the server if it´s working as intended. Just execute the main function in 'core.SopraServer'.
 
-If you are lazy like me then you can use the SimpleWebsocketClient (Chrome Extension but also available for Firefox) as a client to test if everything is working as expected ( https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo).
+![image info](./readmepics/runGradle.jpg)
 
-You can execute the Server in your IDE and connect via this link to your instance:
+The server is providing a Websocket socket. We need a client to connect to him.
+
+
+
+We use the SimpleWebsocketClient (Chrome Extension but also available for Firefox) as a client to test if everything is working as expected ( https://chrome.google.com/webstore/detail/simple-websocket-client/pfdhoblngboilpfeibdedpjgfnlcodoo).
+
+Go to the website and install it (install button) into your browser.
+
+
+
+If you stopped the server then execute the Server again in your IDE and connect via this link to your instance:
 
         ws://localhost:54321
+
+![image info](./readmepics/wsPlugin.jpg)
+![image info](./readmepics/wspluginUse.jpg)
 
 If your Message Log in your client looks like this
 
     Hello from outer space!
-    Hello WOrld
-    Sending your data back => [ Hello WOrld ]
-    Hello WOrld
-    Sending your data back => [ Hello WOrld ]
 
 Then your project is setup correctly.
+You can echo your inputs by typing a message in the Request window and press "Send".
 
-## Gradle aka the buildprocess
+![image info](./readmepics/wsPluginEnd.jpg)
+
+## Gradle aka the buildprocess [Explanation]
 
 Docker needs a compiled version to execute and cannot deal with bare sourcecode.
-For this the project uses the 'application' plugin to generate one without dealing with complex jar creation.
+For this the project we use the 'application' plugin to generate one without dealing with complex jar creation.
 
 
 </br>build.gradle
@@ -60,8 +95,23 @@ For this the project uses the 'application' plugin to generate one without deali
     mainClassName = 'core.SopraServer' <- Points to the class that contains the main-function
 
 
-</br>To build the needed binaries run the from the application-plugin provided 'installDist' Task in the gradle Tab (under Tasks -> distributions -> installDist). The tasks generates (or populates) a build folder in the root of the project. </br>There you can find the 'install" folder which holds your project 'Server' as well as a 'bin' (nice and handy startcripts for linux(sh)/windoof(batch)) and 'lib' (compiled java code) folder.
-
+</br>To build the needed binaries run the from the application-plugin provided 'installDist' Task in the gradle Tab (under Tasks -> distributions -> installDist). The tasks generates (or populates) a "build" folder in the root of the project. </br>There you can find the 'install" folder which holds your project 'Server' as well as a 'bin' (nice and handy startcripts for linux(sh)/windoof(batch)) and 'lib' (compiled java code) folder.
+```
+root    
+│
+└───build
+    │   
+    └───install
+        |
+        └───Server
+            |
+            └───bin
+            │   │   Server
+            │   │   Server.bat
+            │
+            └───bin
+                |   ...
+```
 
 # Docker
 
@@ -118,7 +168,7 @@ Be carefull that no instance of the server is running in your IDE! Otherwise the
 
 For this example project we need to following commands in this order:
 
-        docker build -t sopra
+        docker build -t sopra .
         docker run -p 54321:54321 -d sopra
         docker ps
 
@@ -134,7 +184,7 @@ If everything worked then you now can connect with your client (browser plugin) 
 
 - Run your image ( -p => port forwarding < HostPort > : < image port >)
         
-        docker run -p HostPort:imagePort <The name you choose when building> -d <image name>
+        docker run -p <HostPort>:<imagePort> <The name you choose when building> -d <image name>
 
 - Stop a running image
 
