@@ -77,7 +77,7 @@ If your Message Log in your client looks like this
 Then your project is setup correctly.
 You can echo your inputs by typing a message in the Request window and press "Send".
 
-![image info](./readmepics/wsPluginEnd.jpg)
+![image info](./readmepics/wspluginEnd.jpg)
 
 ## Gradle aka the buildprocess [Explanation]
 
