@@ -109,7 +109,7 @@ root
             │   │   Server
             │   │   Server.bat
             │
-            └───bin
+            └───lib
                 |   ...
 ```
 
